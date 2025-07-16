@@ -1,17 +1,10 @@
-# Web-Projects-Template
+# Link Website Server
 
 [Cette page en français.](LISEZMOI.md)
 
-**A git repository template for my web (or other) projects.**
-
-**This template is distributed under the MIT license. The AGPL license is for the projects I create from this code repository template. Use whatever license you want if you use this template.**
+This code repository contains the server part (in PHP) of this [links website generator](https://github.com/DeveloppeurPascal/Link-Website-Generator).
 
 ## Talks and conferences
-
-### XXX 2024
-
-* [talk title](talk URL) (in English)
-* [talk title](talk URL) (in French)
 
 ### Twitch
 
@@ -19,18 +12,17 @@ Follow my development streams of software, video games, mobile applications and 
 
 ## Using this script
 
-to complete
+Copy the files from the ./src subfolder to your site location (root of a domain, subdomain, or subfolder of an existing site).
 
-You can also [visit the script website](EEE) to find out more about how it works, access videos and articles, find out about the different versions available and their features, contact user support...
+Display the home page and copy the information indicated in your version of the site generator.
+
+Once this is done, the program will switch to data display mode, and you will only need to fill it in using the software.
+
+You can also [visit the script website](https://linkwebsitegenerator.olfsoftware.fr/) to find out more about how it works, access videos and articles, find out about the different versions available and their features, contact user support...
 
 ## Source code installation
 
-To download this code repository, we recommend using "git", but you can also download a ZIP file directly from [its GitHub repository](https://github.com/DeveloppeurPascal/XXXXXXXXXX).
-
-This project uses dependencies in the form of sub-modules. They will be absent from the ZIP file. You'll have to download them by hand.
-
-* [YYY](ZZZ) must be installed in the ./lib-externes/YYY subfolder.
-* [YYY](ZZZ) must be installed in the ./lib-externes/YYY subfolder.
+To download this code repository, we recommend using "git", but you can also download a ZIP file directly from [its GitHub repository](https://github.com/DeveloppeurPascal/Link-Website-Server).
 
 ## Compatibility
 
@@ -38,7 +30,7 @@ When I code, I work locally with XAMPP on Windows. My projects work for this sta
 
 There's no guarantee of compatibility with other software or versions, even though I try to keep my code clean and avoid using too many specific things.
 
-If you detect any anomalies on earlier versions, please don't hesitate to [report them](https://github.com/DeveloppeurPascal/XXXXXXXXXX/issues) so that I can test and try to correct or provide a workaround.
+If you detect any anomalies on earlier versions, please don't hesitate to [report them](https://github.com/DeveloppeurPascal/Link-Website-Server/issues) so that I can test and try to correct or provide a workaround.
 
 ## License to use this code repository and its contents
 
@@ -57,7 +49,7 @@ Certain elements included in this repository may be subject to third-party usage
 
 ## How to ask a new feature, report a bug or a security issue ?
 
-If you want an answer from the project owner the best way to ask for a new feature or report a bug is to go to [the GitHub repository](https://github.com/DeveloppeurPascal/XXXXXXXXXX) and [open a new issue](https://github.com/DeveloppeurPascal/XXXXXXXXXX/issues).
+If you want an answer from the project owner the best way to ask for a new feature or report a bug is to go to [the GitHub repository](https://github.com/DeveloppeurPascal/Link-Website-Server) and [open a new issue](https://github.com/DeveloppeurPascal/Link-Website-Server/issues).
 
 If you found a security issue please don't report it publicly before a patch is available. Explain the case by [sending a private message to the author](https://trucs-de-developpeur-web.fr/nous-contacter.php).
 
@@ -65,7 +57,7 @@ You also can fork the repository and contribute by submitting pull requests if y
 
 ## Support the project and its author
 
-If you think this project is useful and want to support it, please make a donation to [its author](https://github.com/DeveloppeurPascal). It will help to maintain the code and binaries.
+If you think this project is useful and want to support it, please make a donation to [its author](https://github.com/DeveloppeurPascal). It will help to maintain this project and all others.
 
 You can use one of those services :
 
@@ -73,6 +65,7 @@ You can use one of those services :
 * Ko-fi [in French](https://ko-fi.com/patrick_premartin_fr) or [in English](https://ko-fi.com/patrick_premartin_en)
 * [Patreon](https://www.patreon.com/patrickpremartin)
 * [Liberapay](https://liberapay.com/PatrickPremartin)
-* [Paypal](https://www.paypal.com/paypalme/patrickpremartin)
 
-or if you speack french you can [subscribe to Zone Abo](https://zone-abo.fr/nos-abonnements.php) on a monthly or yearly basis and get a lot of resources as videos and articles.
+You can buy an end user license for [my softwares](https://lic.olfsoftware.fr/products.php?lng=en) and [my video games](https://lic.gamolf.fr/products.php?lng=en) or [a developer license for my libraries](https://lic.developpeur-pascal.fr/products.php?lng=en) if you use them in your projects.
+
+I'm also available as a service provider to help you use this or other projects, such as software development, mobile applications and websites. [Contact me](https://vasur.fr/about) to discuss.
