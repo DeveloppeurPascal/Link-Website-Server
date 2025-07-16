@@ -18,16 +18,20 @@ Objet JSON contenant les informations de version de sa description, des paramèt
 			title [
 				lang
 				text
+				public O/N
 			]
 			photo
 				url
 				description [
-					lng
+					lang
 					text
+					public O/N
 				]
+				public O/N
 			before-links [
 				lang
 				text
+				public O/N
 			]
 			links [
 				lang
@@ -35,11 +39,13 @@ Objet JSON contenant les informations de version de sa description, des paramèt
 				url
 				text
 				url-image
+				url-picto
 				public O/N
 			]
 			after-links [
 				lang
 				text
+				public O/N
 			]
 		docs [
 			lang
@@ -66,27 +72,32 @@ Objet JSON contenant les informations de version de sa description, des paramèt
 			lang
 			title
 			url
+			public O/N
 		]
 		year
 		editor [
 			lang
 			name
 			url
+			public O/N
 		]
 		text [
 			lang
 			text
+			public O/N
 		]
 	head
 		metas [
 			lang
 			name
 			content
+			public O/N
 		]
 		links [
 			lang
 			rel
 			href
+			public O/N
 		]
 ```
 
