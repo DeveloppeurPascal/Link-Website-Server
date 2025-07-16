@@ -1,0 +1,9 @@
+# Mac Finder and Windows Explorer files
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+
+# Private directory
+_PRIVATE/
+_PRIVE/
