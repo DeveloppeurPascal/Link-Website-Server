@@ -11,94 +11,96 @@ Lors d'un appel d'API, le serveur reçoit ou transfère les données au logiciel
 Objet JSON contenant les informations de version de sa description, des paramètres d'entête et de pied de page, des informations pour le header des pages, la liste des liens à affichers en fonction de la langue du visiteur, des informations en saisie brute pour les CGU ("UGC"), CGV ("SGC"), RGPD et traitement des données personnelles et mentions légales.
 
 ```
-	settings
+	settings {
 		default-lang
-	pages
-		links
+		site_url
+		favicon_url
+		apple_app_id
+		image {
+			alt [
+				lang
+				text
+				public O/N
+			]
+			url
+			public O/N
+		}
+		nav_links [
+			lang
+			text
+			url
+			public O/N
+		]
+		copyright {
+			links [
+				lang
+				text
+				url
+				public O/N
+			]
+			text [
+				lang
+				text
+				public O/N
+			]
+			year
+			editors [
+				lang
+				name
+				url
+				public O/N
+			]
+		}
+	}
+	pages [
+		public O/N
+		uri
+		head {
+			metas [
+				lang
+				name
+				content
+				public O/N
+			]
+			links [
+				lang
+				rel
+				href
+				public O/N
+			]
+		}
+		body {
 			title [
 				lang
 				text
 				public O/N
 			]
-			photo
-				url
-				description [
+			contents [
+				image {
+					alt [
+						lang
+						text
+						public O/N
+					]
+					url
+					public O/N
+				}
+				text [
 					lang
 					text
 					public O/N
 				]
-				public O/N
-			before-links [
-				lang
-				text
-				public O/N
+				links [
+					lang
+					text
+					url
+					picto_url
+					picto_alt
+					public O/N
+				]
 			]
-			links [
-				lang
-				title
-				url
-				text
-				url-image
-				url-picto
-				public O/N
-			]
-			after-links [
-				lang
-				text
-				public O/N
-			]
-		docs [
-			lang
-			title
-			text
-			uri-title
-			uri-link
-			public O/N
-		]
-		legal [
-			lang
-			title
-			before-text
-			editor-text
-			publisher-text
-			hosting-text
-			after-text
-			uri-title
-			uri-link
-			public O/N
-		]
-	copyright
-		links [
-			lang
-			title
-			url
-			public O/N
-		]
-		year
-		editor [
-			lang
-			name
-			url
-			public O/N
-		]
-		text [
-			lang
-			text
-			public O/N
-		]
-	head
-		metas [
-			lang
-			name
-			content
-			public O/N
-		]
-		links [
-			lang
-			rel
-			href
-			public O/N
-		]
+		}
+	]
 ```
 
 ## Stockage des informations
