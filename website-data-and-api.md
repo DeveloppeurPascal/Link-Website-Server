@@ -1,22 +1,29 @@
 # Données du site et API
 
-Le serveur stocke des informations en JSON sous forme de fichier texte dans l'arborescence du site.
+Le serveur stocke des informations en JSON sous forme de fichier(s) dans l'arborescence du site.
 
-Lors de l'affichage d'une page web le programme regarde si la langue est prise en charge et affiche la page en cache ou la génère si elle n'est pas disponible.
+Lors de l'affichage d'une page web le programme regarde si la langue est prise en charge et affiche la page en cache ou la génère si elle n'est pas disponible ou que le fichier JSON correspondant a été modifié après génération de son cache.
 
-Lors d'un appel d'API, le serveur reçoit ou transfère les données au logiciel client connecté.
+Lors d'un appel d'API, le serveur reçoit ou transfère les données au logiciel client connecté sous forme d'un seul fichier contenant l'intégralité des données du site.
 
-## Structure des données d'un site
+Lorsque le logiciel de gestion de la base transfert les modifications à appliquer, le serveur compare les éléments transférés aux données existantes, efface les pages de cache si les informations par défaut ou paramètres globaux ont été modifiées, génére les fichiers de données indépendants pour chaque langue de chaque page (s'il ont été modifiés).
 
-Objet JSON contenant les informations de version de sa description, des paramètres d'entête et de pied de page, des informations pour le header des pages, la liste des liens à affichers en fonction de la langue du visiteur, des informations en saisie brute pour les CGU ("UGC"), CGV ("SGC"), RGPD et traitement des données personnelles et mentions légales.
+## Base de données du site
+
+La base de données globale du site contient les paramètres globaux, les informations à appliquer par défaut et les informations de chaque page dans leurs langues.
+
+La structure de ce fichier JSON (utilisé en stockage comme lros des échanges entre le serveur du site et le logiciel client de mise à jour) est la suivante :
 
 ```
 	settings {
-		default-lang
+		langs [
+			isocode
+			by_default (true/false)
+		]
 		site_url
 		favicon_url
 		apple_app_id
-		image {
+		default_image {
 			alt [
 				lang
 				text
@@ -25,30 +32,36 @@ Objet JSON contenant les informations de version de sa description, des paramèt
 			url
 			public O/N
 		}
-		nav_links [
-			lang
-			text
-			url
-			public O/N
-		]
-		copyright {
-			links [
+		menu_header [
+			[ // any menu option can have a different name or URL depending on page language
 				lang
 				text
 				url
 				public O/N
 			]
+		]
+		menu_footer [
+			[ // any menu option can have a different name or URL depending on page language
+				lang
+				text
+				url
+				public O/N
+			]
+		]
+		copyright {
 			text [
 				lang
 				text
 				public O/N
 			]
-			year
+			created_year
 			editors [
-				lang
-				name
-				url
-				public O/N
+				[ // any editor can have a different name or URL depending on page language
+					lang
+					name
+					url
+					public O/N
+				]
 			]
 		}
 	}
@@ -57,26 +70,26 @@ Objet JSON contenant les informations de version de sa description, des paramèt
 		uri
 		head {
 			metas [
-				lang
-				name
-				content
-				public O/N
+				[ // any META tag can have a different name or content depending on page language
+					lang
+					name
+					content
+					public O/N
+				]
 			]
 			links [
-				lang
-				rel
-				href
-				public O/N
+				[ // any LINK tag can have a different name or content depending on page language
+					lang
+					rel
+					href
+					public O/N
+				]
 			]
 		}
 		body {
-			title [
-				lang
-				text
-				public O/N
-			]
 			contents [
-				image {
+				{
+					type : "image"
 					alt [
 						lang
 						text
@@ -85,40 +98,57 @@ Objet JSON contenant les informations de version de sa description, des paramèt
 					url
 					public O/N
 				}
-				text [
-					lang
-					text
-					public O/N
-				]
-				links [
-					lang
-					text
-					url
-					picto_url
-					picto_alt
-					public O/N
-				]
+				{
+					type : "title_1"
+					title [
+						lang
+						text
+						public O/N
+					]
+				}
+				{
+					type : "text"
+					text [
+						lang
+						text
+						public O/N
+					]
+				}
+				{
+					type : "link"
+					link [
+						lang
+						text
+						url
+						picto_url
+						picto_alt
+						public O/N
+					]
+				}
 			]
 		}
 	]
 ```
 
-## Stockage des informations
+## Stockage des informations de chaque page
 
-Les données du site sont stockées en JSON dans un fichier texte enregistré dans un dossier protégé de l'hébergement dont le nom peut être modifié sur chaque installation.
+Lors de l'import de la base de données globale ou des miseds à jour, le serveur génère un fichier par langue pour chaque page où seules les informations nécessaires sont indiquées.
 
-En cas d'effacement de ce fichiers, les données du site sont perdues. Une sauvegarde de l'hébergement est fortement conseillée.
+Un fichier de paramétrage des données globales est également généré.
+
+Les pages sont recalculées à partir de ces fichiers et non de la base globale.
 
 ## Site web statique ou dynamique ?
 
 Le site est dynamique mais le serveur gère un cache des pages web afin de limiter la consommation de ressources inutiles.
 
-Ce cache est vidé à chaque mise à jour de la base de données. Il est rempli au fil des affichages de pages entre deux mises à jour de la base de données. Les fichiers en cache sont stockés dans un dossier protégé du serveur.
+La gestion du cache est faite en option pour chaque affichage de page ou globalement lors d'une mise à jour.
+
+Les fichiers en cache sont stockés dans un dossier protégé du serveur. Ils correspondent au contenu HTML de chaque page à afficher.
 
 Le dossier contenant les pages en cache peut être renommé lors de l'installation du script afin de le rendre unique par rapport à d'autres sites. Par défaut le dossier du cache est ./cache-xxxxxxx
 
 En cas d'effacement du dossier contenant les fichiers en cache les pages sont générées lors de l'affichage suivant.
-
 
 ## API du serveur
 
@@ -126,11 +156,11 @@ Les programmes d'API sont accessibles depuis le sous-dossier ./api-xxxxxxx de l'
 
 Une clé publique est demandée lors de chaque appel d'API.
 
-Une clé privée connus du serveur et du client permet l'ajout d'une signature des données transférées.
+Une clé privée connue du serveur et du client permet l'ajout d'une signature des données transférées.
 
 Les clés publiques et privées sont stockées dans le même dossier que les données du site. Le nom du fichier contenant ces clés peut être personnalisé pour chaque site afin de limiter les risques de fuites de données suite à une attaque de type "brut force" ou DDoS.
 
-### export de la base de données
+### Export de la base de données
 
 Utilisé par le logiciel client pour rapatrier la base de données en local.
 
@@ -144,7 +174,7 @@ Paramètres :
 Réponse (sous forme d'un objet JSON) :
 * data : les données de la base telles qu'elles sont stockées sur le serveur
 
-### import de la base de données
+### Import de la base de données
 
 Utilisé par le logiciel client pour envoyer les données au serveur.
 
