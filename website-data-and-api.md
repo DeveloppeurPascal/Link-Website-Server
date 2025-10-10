@@ -22,22 +22,23 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 		]
 		site_url
 		favicon_url
-		apple_app_id
+		apple_application_id
+		default_theme_file ("default" par défaut pour /_theme-xxxxxxx/default.php)
 		default_image {
 			alt [
 				lang
 				text
-				public O/N
+				is_public (boolean)
 			]
 			url
-			public O/N
+			is_public (boolean)
 		}
 		menu_header [
 			[ // any menu option can have a different name or URL depending on page language
 				lang
 				text
 				url
-				public O/N
+				is_public (boolean)
 			]
 		]
 		menu_footer [
@@ -45,14 +46,14 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 				lang
 				text
 				url
-				public O/N
+				is_public (boolean)
 			]
 		]
 		copyright {
 			text [
 				lang
 				text
-				public O/N
+				is_public (boolean)
 			]
 			created_year
 			editors [
@@ -60,21 +61,22 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 					lang
 					name
 					url
-					public O/N
+					is_public (boolean)
 				]
 			]
 		}
 	}
 	pages [
-		public O/N
-		uri
+		is_public (boolean)
+		page_name
+		theme_file (si absent ou vide => default_theme_file)
 		head {
 			metas [
 				[ // any META tag can have a different name or content depending on page language
 					lang
 					name
 					content
-					public O/N
+					is_public (boolean)
 				]
 			]
 			links [
@@ -82,8 +84,13 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 					lang
 					rel
 					href
-					public O/N
+					is_public (boolean)
 				]
+			]
+			title [
+				lang
+				text
+				is_public (boolean)
 			]
 		}
 		body {
@@ -93,17 +100,17 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 					alt [
 						lang
 						text
-						public O/N
+						is_public (boolean)
 					]
 					url
-					public O/N
+					is_public (boolean)
 				}
 				{
 					type : "title_1"
 					title [
 						lang
 						text
-						public O/N
+						is_public (boolean)
 					]
 				}
 				{
@@ -111,7 +118,7 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 					text [
 						lang
 						text
-						public O/N
+						is_public (boolean)
 					]
 				}
 				{
@@ -122,7 +129,7 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 						url
 						picto_url
 						picto_alt
-						public O/N
+						is_public (boolean)
 					]
 				}
 			]
@@ -132,7 +139,7 @@ La structure de ce fichier JSON (utilisé en stockage comme lros des échanges e
 
 ## Stockage des informations de chaque page
 
-Lors de l'import de la base de données globale ou des miseds à jour, le serveur génère un fichier par langue pour chaque page où seules les informations nécessaires sont indiquées.
+Lors de l'import de la base de données globale ou des mises à jour, le serveur génère un fichier par page (contenant toutes les langues) pour chaque page où seules les informations nécessaires sont indiquées.
 
 Un fichier de paramétrage des données globales est également généré.
 
@@ -146,13 +153,13 @@ La gestion du cache est faite en option pour chaque affichage de page ou globale
 
 Les fichiers en cache sont stockés dans un dossier protégé du serveur. Ils correspondent au contenu HTML de chaque page à afficher.
 
-Le dossier contenant les pages en cache peut être renommé lors de l'installation du script afin de le rendre unique par rapport à d'autres sites. Par défaut le dossier du cache est ./cache-xxxxxxx
+Le dossier contenant les pages en cache peut être renommé lors de l'installation du script afin de le rendre unique par rapport à d'autres sites. Par défaut le dossier du cache est ./_cache-xxxxxxx
 
 En cas d'effacement du dossier contenant les fichiers en cache les pages sont générées lors de l'affichage suivant.
 
 ## API du serveur
 
-Les programmes d'API sont accessibles depuis le sous-dossier ./api-xxxxxxx de l'hébergement du site. Le nom de ce dossier doit être changé pour chaque installation si l'utilisateur fait les choses correctement et veut limiter les risques d'attaques de son site.
+Les programmes d'API sont accessibles depuis le sous-dossier ./_api-xxxxxxx de l'hébergement du site. Le nom de ce dossier doit être changé pour chaque installation si l'utilisateur fait les choses correctement et veut limiter les risques d'attaques de son site.
 
 Une clé publique est demandée lors de chaque appel d'API.
 
