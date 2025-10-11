@@ -137,11 +137,8 @@
 		<div id="container">
 			<header><?php
 				if (isset($Settings->default_image) && is_object($Settings->default_image) && isset($Settings->default_image->is_public) && $Settings->default_image->is_public) {
-					if (false !== ($LAltText = GetObjectByLanguage($Settings->default_image->alt, $LanguageISOCode))) {
-						print("<p class=\"LogoTitre\"><img src=\"".$Settings->default_image->url."\" alt=\"".$LAltText->text."\"></p>");
-					}
-					else {
-						print("<p class=\"LogoTitre\"><img src=\"".$Settings->default_image->url."\"></p>");
+					if (false !== ($LImage = GetObjectByLanguage($Settings->default_image->content, $LanguageISOCode))) {
+						print("<p class=\"LogoTitre\"><img src=\"".$LImage->url_image."\" alt=\"".$LImage->text."\"></p>");
 					}
 				}
 				?><nav><?php
