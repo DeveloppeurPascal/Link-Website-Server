@@ -6,135 +6,164 @@ Lors de l'affichage d'une page web le programme regarde si la langue est prise e
 
 Lors d'un appel d'API, le serveur reçoit ou transfère les données au logiciel client connecté sous forme d'un seul fichier contenant l'intégralité des données du site.
 
-Lorsque le logiciel de gestion de la base transfert les modifications à appliquer, le serveur compare les éléments transférés aux données existantes, efface les pages de cache si les informations par défaut ou paramètres globaux ont été modifiées, génére les fichiers de données indépendants pour chaque langue de chaque page (s'il ont été modifiés).
+Lorsque le logiciel de gestion de la base transfère les modifications à appliquer, le serveur compare les éléments transférés aux données existantes, efface les pages de cache si les informations par défaut ou paramètres globaux ont été modifiées, génére les fichiers de données indépendants pour chaque langue de chaque page (s'il ont été modifiés).
 
 ## Base de données du site
 
-La base de données globale du site contient les paramètres globaux, les informations à appliquer par défaut et les informations de chaque page dans leurs langues.
+Les données du site sont stockées par défaut sous forme de fichiers JSON dans le sous-dossier _db-xxxxxxx (à renommer pour chaque site) :
 
-La structure de ce fichier JSON (utilisé en stockage comme lros des échanges entre le serveur du site et le logiciel client de mise à jour) est la suivante :
+* un fichier pour les paramètres du site (liés à son affichage) modifiables par son éditeur
+* un fichier contenant la liste des pages du site
+* un fichier pour chaque page du site
+
+### settings.json : les paramètres globaux du site
 
 ```
-	settings {
-		langs [
-			isocode
-			by_default (true/false)
+	langs [
+		lang : code ISO de la langue
+		url : chemin depuis la racine du site vers l'image associée
+	]
+	default_lang : code ISO de la langue à utiliser par défaut si une information n'existe pas dans la langue demandée
+	site_url : URL du site web
+	favicon_url : (facultatif) chemin depuis la racine du site vers l'image associée
+	apple_application_id : (facultatif) ID Apple Connect de l'application associée au site
+	default_theme_file : "default" par défaut pour /_theme-xxxxxxx/default.php
+	default_image {
+		alt [
+			lang
+			text
+			is_public (boolean)
 		]
-		site_url
-		favicon_url
-		apple_application_id
-		default_theme_file ("default" par défaut pour /_theme-xxxxxxx/default.php)
-		default_image {
-			alt [
-				lang
-				text
-				is_public (boolean)
-			]
+		url : chemin depuis la racine du site vers l'image associée
+		is_public (boolean)
+	}
+	favicon_url : chemin depuis la racine du site vers l'image à utiliser comme favicon du site
+	meta_robots : "INDEX,FOLLOW" by default
+	metas [
+		[
+			lang
+			name
+			content
+			is_public (boolean)
+		]
+	]
+	links [
+		[ // any LINK tag can have a different name or content depending on page language
+			lang
+			rel
+			href
+			is_public (boolean)
+		]
+	]
+	menu_header [
+		[ // any menu option can have a different name or URL depending on page language
+			lang
+			text
 			url
 			is_public (boolean)
-		}
-		menu_header [
-			[ // any menu option can have a different name or URL depending on page language
-				lang
-				text
-				url
-				is_public (boolean)
-			]
 		]
-		menu_footer [
-			[ // any menu option can have a different name or URL depending on page language
-				lang
-				text
-				url
-				is_public (boolean)
-			]
-		]
-		copyright {
-			text [
-				lang
-				text
-				is_public (boolean)
-			]
-			created_year
-			editors [
-				[ // any editor can have a different name or URL depending on page language
-					lang
-					name
-					url
-					is_public (boolean)
-				]
-			]
-		}
-	}
-	pages [
-		is_public (boolean)
-		page_name
-		theme_file (si absent ou vide => default_theme_file)
-		head {
-			metas [
-				[ // any META tag can have a different name or content depending on page language
-					lang
-					name
-					content
-					is_public (boolean)
-				]
-			]
-			links [
-				[ // any LINK tag can have a different name or content depending on page language
-					lang
-					rel
-					href
-					is_public (boolean)
-				]
-			]
-			title [
-				lang
-				text
-				is_public (boolean)
-			]
-		}
-		body {
-			contents [
-				{
-					type : "image"
-					alt [
-						lang
-						text
-						is_public (boolean)
-					]
-					url
-					is_public (boolean)
-				}
-				{
-					type : "title_1"
-					title [
-						lang
-						text
-						is_public (boolean)
-					]
-				}
-				{
-					type : "text"
-					text [
-						lang
-						text
-						is_public (boolean)
-					]
-				}
-				{
-					type : "link"
-					link [
-						lang
-						text
-						url
-						picto_url
-						picto_alt
-						is_public (boolean)
-					]
-				}
-			]
-		}
 	]
+	menu_footer [
+		[ // any menu option can have a different name or URL depending on page language
+			lang
+			text
+			url
+			is_public (boolean)
+		]
+	]
+	copyright {
+		text [
+			lang
+			text
+			is_public (boolean)
+		]
+		created_year
+		editors [
+			[ // any editor can have a different name or URL depending on page language
+				lang
+				text
+				url
+				is_public (boolean)
+			]
+		]
+	}
+```
+
+### list.json : la liste des pages du site
+
+```
+```
+
+### page_(.*).json : les articles du site
+
+```
+	is_public (boolean)
+	page_name
+	theme_file (si absent ou vide => default_theme_file)
+	head {
+		metas [
+			[ // any META tag can have a different name or content depending on page language
+				lang
+				name
+				content
+				is_public (boolean)
+			]
+		]
+		links [
+			[ // any LINK tag can have a different name or content depending on page language
+				lang
+				rel
+				href
+				is_public (boolean)
+			]
+		]
+		title [
+			lang
+			text
+			is_public (boolean)
+		]
+	}
+	body {
+		contents [
+			{
+				type : "image"
+				alt [
+					lang
+					text
+					is_public (boolean)
+				]
+				url
+				is_public (boolean)
+			}
+			{
+				type : "title_1"
+				title [
+					lang
+					text
+					is_public (boolean)
+				]
+			}
+			{
+				type : "text"
+				text [
+					lang
+					text
+					is_public (boolean)
+				]
+			}
+			{
+				type : "link"
+				link [
+					lang
+					text
+					url
+					picto_url
+					picto_alt
+					is_public (boolean)
+				]
+			}
+		]
+	}
 ```
 
 ## Stockage des informations de chaque page
