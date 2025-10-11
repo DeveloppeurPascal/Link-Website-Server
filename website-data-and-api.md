@@ -150,12 +150,13 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		}
 		{
 			type : "image"
-			alt [
+			content [
 				lang
 				text
+				url_image
+				url
 				is_public (boolean)
 			]
-			url
 			is_public (boolean)
 		}
 		{
