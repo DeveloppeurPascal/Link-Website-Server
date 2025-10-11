@@ -170,7 +170,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		}
 		{
 			type : "link"
-			link [
+			content [
 				lang
 				text
 				url
