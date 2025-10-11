@@ -34,6 +34,42 @@
 	// * Parameters you can define in your config file *
 	// *************************************************
 
+	// Path to API files
+	if (!defined("_PathToAPIFolder"))
+		define("_PathToAPIFolder", __DIR__."/_api-xxxxxxx");
+
+	// Path to CACHE files
+	if (!defined("_PathToCacheFolder"))
+		define("_PathToCacheFolder", __DIR__."/_cache-xxxxxxx");
+
+	// Path to DB files
+	if (!defined("_PathToDatabaseFolder"))
+		define("_PathToDatabaseFolder", __DIR__."/_db-xxxxxxx");
+
+	// Path to THEME-DIST files
+	if (!defined("_PathToDefaultThemeFolder"))
+		define("_PathToDefaultThemeFolder", __DIR__."/_theme-dist-xxxxxxx");
+
+	// Path to THEME files
+	if (!defined("_PathToThemeFolder"))
+		define("_PathToThemeFolder", _PathToDefaultThemeFolder);
+
+	// Path to INC files
+	if (!defined("_PathToIncludesFolder"))
+		define("_PathToIncludesFolder", __DIR__."/_inc-xxxxxxx");
+
+	// Default INDEX page file name
+	if (!defined("_DefaultIndexPageName"))
+		define("_DefaultIndexPageName", "index.html");
+
+	// Default 403-Forbidden page file name
+	if (!defined("_DefaultForbiddenPageName"))
+		define("_DefaultForbiddenPageName", "403-forbidden.html");
+
+	// Default 404-FileNotFound page file name
+	if (!defined("_DefaultFileNotFoundPageName"))
+		define("_DefaultFileNotFoundPageName", "404-filenotfound.html");
+
 	// Your URL to show as this site publisher in copyright texts
 	if (!defined("_CopyrightPublisherURL")) // TODO : à remplacer par $Settings
 		define("_CopyrightPublisherURL", "");
@@ -85,35 +121,3 @@
 		else {
 			define("_FavIconFilePath", "");
 		}
-
-	// Path to API files
-	if (!defined("_PathToAPIFolder"))
-		define("_PathToAPIFolder", __DIR__."/_api-xxxxxxx");
-
-	// Path to CACHE files
-	if (!defined("_PathToCacheFolder"))
-		define("_PathToCacheFolder", __DIR__."/_cache-xxxxxxx");
-
-	// Path to DB files
-	if (!defined("_PathToDatabaseFolder"))
-		define("_PathToDatabaseFolder", __DIR__."/_db-xxxxxxx");
-
-	// Path to THEME files
-	if (!defined("_PathToThemeFolder"))
-		define("_PathToThemeFolder", __DIR__."/_theme-xxxxxxx");
-
-	// Path to INC files
-	if (!defined("_PathToIncludesFolder"))
-		define("_PathToIncludesFolder", __DIR__."/_inc-xxxxxxx");
-
-	// Default INDEX page file name
-	if (!defined("_DefaultIndexPageName"))
-		define("_DefaultIndexPageName", "index.html");
-
-	// Default 403-Forbidden page file name
-	if (!defined("_DefaultForbiddenPageName"))
-		define("_DefaultForbiddenPageName", "403-forbidden.html");
-
-	// Default 404-FileNotFound page file name
-	if (!defined("_DefaultFileNotFoundPageName"))
-		define("_DefaultFileNotFoundPageName", "404-filenotfound.html");
