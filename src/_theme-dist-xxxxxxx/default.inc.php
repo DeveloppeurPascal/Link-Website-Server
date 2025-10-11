@@ -180,55 +180,33 @@
 					}
 				?></nav>
 			</header>
-			<section>
-				<h1 class="PageTitle"><?php
-					print(htmlentities($page_title, ENT_COMPAT, "UTF-8"));
-				?></h1><?php
-				if (isset($page_text_top)) {
-					print($page_text_top);
-				}
-				if (isset($page_list) && is_array($page_list) && (count($page_list)>0)) {
-					foreach($page_list as $item) {
-						?><div class="ListItem"><?php
-							if (isset($item->url) && (!empty($item->url))) {
-								print("<a href=\"".$item->url."\">");
-							}
-							if (isset($item->logo_url) && (!empty($item->logo_url))) {
-								if (isset($item->logo_alt) && (!empty($item->logo_alt))) {
-									print("<img src=\"".$item->logo_url."\" alt=\"".$item->logo_alt."\"> ");
-								}
-								else {
-									print("<img src=\"".$item->logo_url."\"> ");
+			<section><article><?php
+				if (isset($PageData->contents) && is_array($PageData->contents) && (count($PageData->contents)>0)) {
+					$CurrentBlocType = "";
+					foreach($PageData->contents as $LContent) {
+						if (is_object($LContent) && isset($LContent->type) && (!empty($LContent->type)) && isset($LContent->is_public) && $LContent->is_public) {
+							if ($CurrentBlockType != $LContent->type) {
+								if ((! empty($CurrentBlockType)) && (false !== ($BlocFilePath = GetPathForThemeFile("bloc-".$CurrentBlockType."-after")))) {
+									@include($BlocFilePath);
 								}
 							}
-							if (isset($item->text) && (!empty($item->text))) {
-								print($item->text);
+							$CurrentBlock = $LContent;
+							if ($CurrentBlockType != $CurrentBlock->type) {
+								$CurrentBlockType = $CurrentBlock->type;
+								if (false !== ($BlocFilePath = GetPathForThemeFile("bloc-".$CurrentBlockType."-before"))) {
+									@include($BlocFilePath);
+								}
 							}
-							if (isset($item->url) && (!empty($item->url))) {
-								print("</a>");
+							if (false !== ($BlocFilePath = GetPathForThemeFile("bloc-".$CurrentBlock->type))) {
+								@include($BlocFilePath);
 							}
-						?></div><?php
+						}
+					}
+					if ((! empty($CurrentBlockType)) && (false !== ($BlocFilePath = GetPathForThemeFile("bloc-".$CurrentBlockType."-after")))) {
+						@include($BlocFilePath);
 					}
 				}
-				if (isset($page_video) && is_array($page_video) && (count($page_video)>0)) {
-					foreach($page_video as $item) {
-						?><div class="VideoItem"><?php
-							if (isset($item->text_top)) {
-								print($item->text_top);
-							}
-							if (isset($item->video)) {
-								print($item->video);
-							}
-							if (isset($item->text_bottom)) {
-								print($item->text_bottom);
-							}
-						?></div><?php
-					}
-				}
-				if (isset($page_text_bottom)) {
-					print($page_text_bottom);
-				}
-			?></section>
+			?></article></section>
 			<footer>
 				<p><?php
 					if (isset($Settings->menu_footer) && is_array($Settings->menu_footer) && (count($Settings->menu_footer)>0)) {
