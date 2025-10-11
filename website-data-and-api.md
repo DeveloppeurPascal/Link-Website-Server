@@ -24,7 +24,6 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		url : chemin depuis la racine du site vers l'image associée
 	]
 	default_lang : code ISO de la langue à utiliser par défaut si une information n'existe pas dans la langue demandée
-	site_url : URL du site web
 	favicon_url : (facultatif) chemin depuis la racine du site vers l'image associée
 	apple_application_id : (facultatif) ID Apple Connect de l'application associée au site
 	default_theme_file : "default" par défaut pour /_theme-xxxxxxx/default.php
@@ -37,7 +36,6 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		]
 		is_public (boolean)
 	}
-	favicon_url : chemin depuis la racine du site vers l'image à utiliser comme favicon du site
 	default_meta_robots : "index,follow" by default
 	metas [
 		[
