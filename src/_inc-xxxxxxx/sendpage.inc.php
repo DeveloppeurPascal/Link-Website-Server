@@ -8,7 +8,7 @@
 	// https://github.com/DeveloppeurPascal/Link-Website-Server
 
 	function GenerateAndSendPage($LanguageISOCode, $PageName) {
-		require_once(_PathToIncludesFolder."/pagedata.inc.php");
+		global $Settings;
 		
 		$FilePath = GetPageDataFilePath($PageName);
 		
@@ -21,22 +21,14 @@
 			}
 			else {
 				if ($PageData->is_public) {
-					if (false !== ($Settings = GetSettingsData())) {
-						$ThemeFile = (isset($PageData->theme_file) && (!empty($PageData->theme_file)))?$PageData->theme_file:$Settings->default_theme_file;
-						if (empty($ThemeFile))
-							$ThemeFile = _DefaultTemplateFileName;
-						if (!file_exists(_PathToThemeFolder."/".$ThemeFile.".inc.php")) {
-							// TODO : add an error to log
-							RedirectToForbiddenPage($LanguageISOCode);
-						}
-						else {
-							// Open the theme file which can use $LanguageISOCode, $Settings and $PageData objects
-							require_once(_PathToThemeFolder."/".$ThemeFile.".inc.php");
-						}
+					$ThemeFile = (isset($PageData->theme_file) && (!empty($PageData->theme_file)))?$PageData->theme_file:$Settings->default_theme_file;
+					if (empty($ThemeFile) || (!file_exists(_PathToThemeFolder."/".$ThemeFile.".inc.php"))) {
+						// TODO : add an error to log
+						RedirectToForbiddenPage($LanguageISOCode);
 					}
 					else {
-						// No local settings defined in the database, acces forbidden
-						RedirectToForbiddenPage($LanguageISOCode);
+						// Open the theme file which can use $LanguageISOCode, $Settings and $PageData objects
+						@include_once(_PathToThemeFolder."/".$ThemeFile.".inc.php");
 					}
 				}
 				else {

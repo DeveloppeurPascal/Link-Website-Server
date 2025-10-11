@@ -8,7 +8,7 @@
 	// https://github.com/DeveloppeurPascal/Link-Website-Server
 
 	function GetPageDataFilePath($PageName) {
-		return _PathToDatabaseFolder."/".sha1($PageName).".json";
+		return _PathToDatabaseFolder."/page_".sha1($PageName).".json";
 	}
 
 	function GetPageData($PageName) {
@@ -22,6 +22,8 @@
 	}
 
 	function GetObjectByLanguage($ObjectsList, $LanguageISOCode, $ForceIsPublic = true) {
+		global $Settings;
+		
 		if ((! is_array($ObjectsList)) || (0 == count($ObjectsList)) || empty($LanguageISOCode)) {
 			return false;
 		}
@@ -35,8 +37,8 @@
 				}
 			}
 		}
-		if (_DefaultLanguage != $LanguageISOCode) {
-			return GetObjectByLanguage($ObjectsList, _DefaultLanguage, $ForceIsPublic);
+		if ($Settings->default_lang != $LanguageISOCode) {
+			return GetObjectByLanguage($ObjectsList, $Settings->default_lang, $ForceIsPublic);
 		}
 		else {
 			return false;

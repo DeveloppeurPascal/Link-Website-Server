@@ -52,10 +52,12 @@
 	}
 
 	function GetLanguageCode() {
+		global $Settings;
+		
 		if (isset($_GET) && isset($_GET["lng"])) {
 			$lng = strtolower(substr(trim($_GET["lng"]),0,2));
-			for ($i = 0; $i < count(_AvailableLanguagesList); $i++) {
-				if ($lng == _AvailableLanguagesList[$i]) {
+			for ($i = 0; $i < count($Settings->langs); $i++) {
+				if ($lng == $Settings->langs[$i]->lang) {
 					return $lng;
 				}
 			}
@@ -65,18 +67,25 @@
 			$tab = explode(",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 			for ($j = 0; $j < count($tab); $j++) {
 				$lng = strtolower(substr(trim($tab[$j]),0,2));
-				for ($i = 0; $i < count(_AvailableLanguagesList); $i++) {
-					if ($lng == _AvailableLanguagesList[$i]) {
+				for ($i = 0; $i < count($Settings->langs); $i++) {
+					if ($lng == $Settings->langs[$i]->lang) {
 						return $lng;
 					}
 				}
 			}
 		}
 
-		return _DefaultLanguage;
+		return $Settings->default_lang;
 	}
 
 	require_once(__DIR__."/__common_settings-dist.inc.php");
+
+	require_once(_PathToIncludesFolder."/pagedata.inc.php");
+	if (false === ($Settings = GetSettingsData())) {
+		// TODO : add log - can't find settings file
+		http_response_code(500);
+		die("Internal server error");
+	}
 
 	// Get the URI (part of the URL between the domaine name (with port) and the QUERY_STRING)
 	$uri = trim($_SERVER["REQUEST_URI"]);
@@ -96,8 +105,8 @@
 
 			// Check if this language ISO code is available
 			$LanguageISOCode = "";
-			for ($i = 0; $i < count(_AvailableLanguagesList); $i++) {
-				if ($lang_lowercase == _AvailableLanguagesList[$i]) {
+			for ($i = 0; $i < count($Settings->langs); $i++) {
+				if ($lang_lowercase == $Settings->langs[$i]->lang) {
 					$LanguageISOCode = $lang_lowercase;
 					break;
 				}
@@ -124,8 +133,8 @@
 			
 			// Check if this language ISO code is available
 			$LanguageISOCode = "";
-			for ($i = 0; $i < count(_AvailableLanguagesList); $i++) {
-				if ($lang_lowercase == _AvailableLanguagesList[$i]) {
+			for ($i = 0; $i < count($Settings->langs); $i++) {
+				if ($lang_lowercase == $Settings->langs[$i]->lang) {
 					$LanguageISOCode = $lang_lowercase;
 					break;
 				}

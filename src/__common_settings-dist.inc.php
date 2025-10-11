@@ -70,54 +70,6 @@
 	if (!defined("_DefaultFileNotFoundPageName"))
 		define("_DefaultFileNotFoundPageName", "404-filenotfound.html");
 
-	// Your URL to show as this site publisher in copyright texts
-	if (!defined("_CopyrightPublisherURL")) // TODO : à remplacer par $Settings
-		define("_CopyrightPublisherURL", "");
-
-	// Your name to show as this site publisher in copyright texts
-	if (!defined("_CopyrightPublisherName")) // TODO : à remplacer par $Settings
-		define("_CopyrightPublisherName", "Your Publisher Name");
-
-	// Your name to show as this site publisher in copyright texts
-	if (!defined("_DefaultTemplateFileName"))
-		define("_DefaultTemplateFileName", __DIR__."/theme/default.php");
-
-	// Available languages for this website
-	if (!defined("_AvailableLanguagesList")) // TODO : à remplacer par $Settings
-		define("_AvailableLanguagesList", ["fr","en"]);
-
-	// Default language to use for this website
-	if (!defined("_DefaultLanguage")) // TODO : à remplacer par $Settings
-		define("_DefaultLanguage", "en");
-
 	// Absolute URL of your website
 	if (!defined("_SiteURL"))
-		define("_SiteURL", "http://localhost/Simple-Multilingual-Site/src");
-		// define("_SiteURL", "https://mywebsite.zorglub.web");
-		// define("_SiteURL", "https://mywebsite.zorglub.web/InAFolder/");
-
-	// ID of your application on iTunes (or Apple Connect)
-	if (!defined("_AppleApplicationId")) // TODO : à remplacer par $Settings
-		define("_AppleApplicationId", "");
-
-	// Value to use for the ROBOTS META tag (cf https://www.robotstxt.org)
-	if (!defined("_MetaRobots")) // TODO : à remplacer par $Settings
-		define("_MetaRobots", "index,follow");
-
-	// Relative path of the favicon file from site URL ("favicon.ico" or other)
-	if (!defined("_FavIconFilePath")) // TODO : à remplacer par $Settings
-		if (file_exists(__DIR__."/favicon.ico")) {
-			define("_FavIconFilePath", "favicon.ico");
-		}
-		else if (file_exists(__DIR__."/favicon.png")) {
-			define("_FavIconFilePath", "favicon.png");
-		}
-		else if (file_exists(__DIR__."/favicon.gif")) {
-			define("_FavIconFilePath", "favicon.gif");
-		}
-		else if (file_exists(__DIR__."/favicon.jpg")) {
-			define("_FavIconFilePath", "favicon.jpg");
-		}
-		else {
-			define("_FavIconFilePath", "");
-		}
+		define("_SiteURL", "http://localhost/Link-Website-Server/src");

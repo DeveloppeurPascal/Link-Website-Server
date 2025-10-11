@@ -19,22 +19,22 @@
 			}
 		?><link rel="canonical" href="<?php print(GetAbsoluteURL($LanguageISOCode."/".$page_filename)); ?>" />
 		<?php
-			for ($i = 0; $i < count(_AvailableLanguagesList); $i++) {
-				if ($LanguageISOCode !== _AvailableLanguagesList[$i]) {
-					print("<link rel=\"alternate\" href=\"".GetAbsoluteURL(_AvailableLanguagesList[$i]."/".$page_filename)."\" hreflang=\""._AvailableLanguagesList[$i]."\" />\n");
+			for ($i = 0; $i < count($Settings->langs); $i++) {
+				if ($LanguageISOCode !== $Settings->langs[$i]->lang) {
+					print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->langs[$i]->lang."/".$page_filename)."\" hreflang=\"".$Settings->langs[$i]->lang."\" />\n");
 				}
 			}
-			if (! empty(_DefaultLanguage)) {
-				print("<link rel=\"alternate\" href=\"".GetAbsoluteURL(_DefaultLanguage."/".$page_filename)."\" hreflang=\"x-default\" />\n");
+			if (! empty($Settings->default_lang)) {
+				print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->default_lang."/".$page_filename)."\" hreflang=\"x-default\" />\n");
 			}
-			if (defined("_AppleApplicationId") && (! empty(_AppleApplicationId))) {
-				print("<meta name=\"apple-itunes-app\" content=\"app-id="._AppleApplicationId."\" />\n");
+			if (isset($Settings->apple_application_id) && (! empty($Settings->apple_application_id))) {
+				print("<meta name=\"apple-itunes-app\" content=\"app-id=".$Settings->apple_application_id."\" />\n");
 			}
-			if (defined("_MetaRobots") && (! empty(_MetaRobots))) {
-				print("<META NAME=\"ROBOTS\" CONTENT=\""._MetaRobots."\">\n");
+			if (isset($Settings->meta_robots) && (! empty($Settings->meta_robots))) {
+				print("<META NAME=\"ROBOTS\" CONTENT=\"".$Settings->meta_robots."\">\n");
 			}
-			if (defined("_FavIconFilePath") && (! empty(_FavIconFilePath))) {
-				print("<link rel=\"icon\" type=\"image/x-icon\" href=\"".GetAbsoluteURL(_FavIconFilePath)."\">\n");
+			if (isset($Settings->favicon_url) && (! empty($Settings->favicon_url))) {
+				print("<link rel=\"icon\" type=\"image/x-icon\" href=\"".GetAbsoluteURL(favicon_url)."\">\n");
 			}
 		?>
 		<style>
@@ -137,13 +137,13 @@
 						}
 					}
 
-					for ($i = 0; $i < count(_AvailableLanguagesList); $i++) {
-						if ($LanguageISOCode !== _AvailableLanguagesList[$i]) {
-							if (file_exists(__DIR__."/../img/flags/".strtolower(_AvailableLanguagesList[$i]).".png")) {
-								print("<a href=\"../"._AvailableLanguagesList[$i]."/".$page_filename."\"><img src=\"../img/flags/".strtolower(_AvailableLanguagesList[$i]).".png\" class=\"flag\" alt=\"".strtoupper(_AvailableLanguagesList[$i])."\"></a> ");
+					for ($i = 0; $i < count($Settings->langs); $i++) {
+						if ($LanguageISOCode !== $Settings->langs[$i]->lang) {
+							if (isset(Settings->langs[$i]->url) && (!empty(Settings->langs[$i]->url))) {
+								print("<a href=\"../".$Settings->langs[$i]->lang."/".$page_filename."\"><img src=\"".GetAbsoluteURL($Settings->langs[$i]->url)."\" class=\"flag\" alt=\"".strtoupper($Settings->langs[$i]->lang)."\"></a> ");
 							}
 							else {
-								print("<a href=\"../"._AvailableLanguagesList[$i]."/".$page_filename."\">".strtoupper(_AvailableLanguagesList[$i])."</a> ");
+								print("<a href=\"../".$Settings->langs[$i]->lang."/".$page_filename."\">".strtoupper($Settings->langs[$i]->lang)."</a> ");
 							}
 						}
 					}
@@ -229,16 +229,20 @@
 							print("<span lang=\"".$LItem->lang."\">".$LText->text."</span><br>\n");
 						}
 						else {
-							print(.$LText->text."<br>\n");
+							print($LText->text."<br>\n");
 						}
 					}
 				?>&copy; <?php
-					print($Settings->copyright->created_year.(($Settings->copyright->created_year<date("Y"))?"-".date("Y"):""));
-					if (! empty(_CopyrightPublisherURL)) {
-						print("<a href=\""._CopyrightPublisherURL."\">"._CopyrightPublisherName."</a>");
-					}
-					else {
-						print(_CopyrightPublisherName);
+					print($Settings->copyright->created_year.(($Settings->copyright->created_year<date("Y"))?"-".date("Y"):"")." ");
+					if (isset($Settings->copyright) && isset($Settings->copyright->editors) && is_array($Settings->copyright->editors) && (0 < count($Settings->copyright->editors))) {
+						$LFirst = true;
+						foreach($Settings->copyright->editors as $LEditor) {
+							if (false !== ($LItem = GetObjectByLanguage($LEditor, $LanguageISOCode))) {
+								$LWithURL = isset($LItem->url) && (!empty($LItem->url));
+								print(((!$LFirst)?"/ "."").($LWithURL?"<a href=\"".$LItem->url."\">":"").(($LanguageISOCode!=$LItem->lang)?"<span lang=\"".$LItem->lang."\">".$LItem->text."</span>":$LItem->text).($LWithURL?"</a>":"")." ");
+								$LFirst = false;
+							}
+						}
 					}
 				?></p>
 			</footer>
