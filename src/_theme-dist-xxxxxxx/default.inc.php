@@ -14,7 +14,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 		<?php
-			if (false !== ($LTitle = GetObjectByLanguage($PageData->head->title,$LanguageISOCode))) {
+			if (isset($PageData->title) && is_array($PageData->title) && (false !== ($LTitle = GetObjectByLanguage($PageData->title,$LanguageISOCode)))) {
 				print("<title lang=\"".$LTitle->lang."\">".$LTitle->text."</title>");
 			}
 		?><link rel="canonical" href="<?php print(GetAbsoluteURL($LanguageISOCode."/".$page_filename)); ?>" />
@@ -24,7 +24,7 @@
 					print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->langs[$i]->lang."/".$page_filename)."\" hreflang=\"".$Settings->langs[$i]->lang."\" />\n");
 				}
 			}
-			if (! empty($Settings->default_lang)) {
+			if (isset($Settings->default_lang) && (! empty($Settings->default_lang))) {
 				print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->default_lang."/".$page_filename)."\" hreflang=\"x-default\" />\n");
 			}
 			if (isset($Settings->apple_application_id) && (! empty($Settings->apple_application_id))) {
@@ -108,7 +108,7 @@
 	<body>
 		<div id="container">
 			<header><?php
-				if ($Settings->default_image->is_public) {
+				if (isset($Settings->default_image) && is_object($Settings->default_image) && isset($Settings->default_image->is_public) && $Settings->default_image->is_public) {
 					if (false !== ($LAltText = GetObjectByLanguage($Settings->default_image->alt, $LanguageISOCode))) {
 						print("<p class=\"LogoTitre\"><img src=\"".$Settings->default_image->url."\" alt=\"".$LAltText->text."\"></p>");
 					}
@@ -117,7 +117,7 @@
 					}
 				}
 				?><nav><?php
-					if (count($Settings->menu_header)>0)) {
+					if (isset($Settings->menu_header) && is_array($Settings->menu_header) && (count($Settings->menu_header)>0)) {
 						foreach($Settings->menu_header as $LMenuHeader) {
 							if (false !== ($LItem = GetObjectByLanguage($LMenuHeader, $LanguageISOCode))) {
 								if ($LanguageISOCode != $LItem->lang) {
@@ -203,7 +203,7 @@
 			?></section>
 			<footer>
 				<p><?php
-					if (count($Settings->menu_footer)>0)) {
+					if (isset($Settings->menu_footer) && is_array($Settings->menu_footer) && (count($Settings->menu_footer)>0)) {
 						foreach($Settings->menu_footer as $LMenuFooter) {
 							if (false !== ($LItem = GetObjectByLanguage($LMenuFooter, $LanguageISOCode))) {
 								if ($LanguageISOCode != $LItem->lang) {
@@ -224,26 +224,26 @@
 								}
 							}
 						}
+						print("<br>\n");
 					}
-				?><br>
-				<?php
-					if (false !== ($LText = GetObjectByLanguage($Settings->copyright->text))) {
-						if ($LanguageISOCode != $LText->lang) {
-							print("<span lang=\"".$LItem->lang."\">".$LText->text."</span><br>\n");
+					if (isset($Settings->copyright) && is_object($Settings->copyright)) {
+						if (false !== ($LText = GetObjectByLanguage($Settings->copyright->text))) {
+							if ($LanguageISOCode != $LText->lang) {
+								print("<span lang=\"".$LItem->lang."\">".$LText->text."</span><br>\n");
+							}
+							else {
+								print($LText->text."<br>\n");
+							}
 						}
-						else {
-							print($LText->text."<br>\n");
-						}
-					}
-				?>&copy; <?php
-					print($Settings->copyright->created_year.(($Settings->copyright->created_year<date("Y"))?"-".date("Y"):"")." ");
-					if (isset($Settings->copyright) && isset($Settings->copyright->editors) && is_array($Settings->copyright->editors) && (0 < count($Settings->copyright->editors))) {
-						$LFirst = true;
-						foreach($Settings->copyright->editors as $LEditor) {
-							if (false !== ($LItem = GetObjectByLanguage($LEditor, $LanguageISOCode))) {
-								$LWithURL = isset($LItem->url) && (!empty($LItem->url));
-								print(((!$LFirst)?"/ "."").($LWithURL?"<a href=\"".$LItem->url."\">":"").(($LanguageISOCode!=$LItem->lang)?"<span lang=\"".$LItem->lang."\">".$LItem->text."</span>":$LItem->text).($LWithURL?"</a>":"")." ");
-								$LFirst = false;
+						print("&copy; ".$Settings->copyright->created_year.(($Settings->copyright->created_year<date("Y"))?"-".date("Y"):"")." ");
+						if (isset($Settings->copyright) && isset($Settings->copyright->editors) && is_array($Settings->copyright->editors) && (0 < count($Settings->copyright->editors))) {
+							$LFirst = true;
+							foreach($Settings->copyright->editors as $LEditor) {
+								if (false !== ($LItem = GetObjectByLanguage($LEditor, $LanguageISOCode))) {
+									$LWithURL = isset($LItem->url) && (!empty($LItem->url));
+									print(((!$LFirst)?"/ "."").($LWithURL?"<a href=\"".$LItem->url."\">":"").(($LanguageISOCode!=$LItem->lang)?"<span lang=\"".$LItem->lang."\">".$LItem->text."</span>":$LItem->text).($LWithURL?"</a>":"")." ");
+									$LFirst = false;
+								}
 							}
 						}
 					}
