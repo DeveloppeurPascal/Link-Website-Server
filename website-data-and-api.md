@@ -38,7 +38,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		is_public (boolean)
 	}
 	favicon_url : chemin depuis la racine du site vers l'image à utiliser comme favicon du site
-	default_meta_robots : "INDEX,FOLLOW" by default
+	default_meta_robots : "index,follow" by default
 	metas [
 		[
 			lang
@@ -51,6 +51,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		[
 			lang
 			rel
+			type
 			href
 			is_public (boolean)
 		]
@@ -118,6 +119,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		[ // any LINK tag can have a different name or content depending on page language
 			lang
 			rel
+			type
 			href
 			is_public (boolean)
 		]
