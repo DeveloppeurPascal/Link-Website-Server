@@ -31,13 +31,41 @@
 				print("<meta name=\"apple-itunes-app\" content=\"app-id=".$Settings->apple_application_id."\" />\n");
 			}
 			if (isset($PageData->meta_robots) && (! empty($PageData->meta_robots))) {
-				print("<META NAME=\"ROBOTS\" CONTENT=\"".$PageData->meta_robots."\">\n");
+				print("<meta name=\"robots\" content=\"".$PageData->meta_robots."\">\n");
 			}
 			else if (isset($Settings->default_meta_robots) && (! empty($Settings->default_meta_robots))) {
-				print("<META NAME=\"ROBOTS\" CONTENT=\"".$Settings->default_meta_robots."\">\n");
+				print("<meta name=\"robots\" content=\"".$Settings->default_meta_robots."\">\n");
 			}
 			if (isset($Settings->favicon_url) && (! empty($Settings->favicon_url))) {
 				print("<link rel=\"icon\" type=\"image/x-icon\" href=\"".GetAbsoluteURL(favicon_url)."\">\n");
+			}
+			if (isset($Settings->metas) && is_array($Settings->metas) && (count($Settings->metas)>0)) {
+				foreach($Settings->metas as $LMeta) {
+					if (false !== ($LItem = GetObjectByLanguage($LMeta))) {
+						print("<meta name=\"".$LItems->name."\" content=\"".$LItem->content."\"".(($LanguageISOCode!=$LItem->lang)?" lang=\"".$LItem->lang."\"":"").">\n");
+					}
+				}
+			}
+			if (isset($PageData->metas) && is_array($PageData->metas) && (count($PageData->metas)>0)) {
+				foreach($PageData->metas as $LMeta) {
+					if (false !== ($LItem = GetObjectByLanguage($LMeta))) {
+						print("<meta name=\"".$LItems->name."\" content=\"".$LItem->content."\"".(($LanguageISOCode!=$LItem->lang)?" lang=\"".$LItem->lang."\"":"").">\n");
+					}
+				}
+			}
+			if (isset($Settings->links) && is_array($Settings->links) && (count($Settings->links)>0)) {
+				foreach($Settings->links as $LLink) {
+					if (false !== ($LItem = GetObjectByLanguage($LLink))) {
+						print("<link".((!empty($LItem->rel))?" rel=\"".$LItem->rel."\"":"").((!empty($LItem->type))?" type=\"".$LItem->type."\"":"").((!empty($LItem->href))?" href=\"".$LItem->href."\"":"").(($LanguageISOCode!=$LItem->lang)?" lang=\"".$LItem->lang."\"":"").">\n");
+					}
+				}
+			}
+			if (isset($PageData->links) && is_array($PageData->links) && (count($PageData->links)>0)) {
+				foreach($PageData->links as $LLink) {
+					if (false !== ($LItem = GetObjectByLanguage($LLink))) {
+						print("<link".((!empty($LItem->rel))?" rel=\"".$LItem->rel."\"":"").((!empty($LItem->type))?" type=\"".$LItem->type."\"":"").((!empty($LItem->href))?" href=\"".$LItem->href."\"":"").(($LanguageISOCode!=$LItem->lang)?" lang=\"".$LItem->lang."\"":"").">\n");
+					}
+				}
 			}
 		?>
 		<style>
