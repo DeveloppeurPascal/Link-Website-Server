@@ -97,74 +97,70 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 ### page_(.*).json : les articles du site
 
 ```
-	is_public (boolean)
+	title [
+		lang
+		text
+		is_public (boolean)
+	]
 	page_name
+	is_public (boolean)
 	theme_file (si absent ou vide => default_theme_file)
-	head {
-		meta_robots : "" by default to use the same as global setting
-		metas [
-			[ // any META tag can have a different name or content depending on page language
-				lang
-				name
-				content
-				is_public (boolean)
-			]
-		]
-		links [
-			[ // any LINK tag can have a different name or content depending on page language
-				lang
-				rel
-				href
-				is_public (boolean)
-			]
-		]
-		title [
+	meta_robots : "" by default to use the same as global setting
+	metas [
+		[ // any META tag can have a different name or content depending on page language
 			lang
-			text
+			name
+			content
 			is_public (boolean)
 		]
-	}
-	body {
-		contents [
-			{
-				type : "image"
-				alt [
-					lang
-					text
-					is_public (boolean)
-				]
-				url
-				is_public (boolean)
-			}
-			{
-				type : "title_1"
-				title [
-					lang
-					text
-					is_public (boolean)
-				]
-			}
-			{
-				type : "text"
-				text [
-					lang
-					text
-					is_public (boolean)
-				]
-			}
-			{
-				type : "link"
-				link [
-					lang
-					text
-					url
-					picto_url
-					picto_alt
-					is_public (boolean)
-				]
-			}
+	]
+	links [
+		[ // any LINK tag can have a different name or content depending on page language
+			lang
+			rel
+			href
+			is_public (boolean)
 		]
-	}
+	]
+	contents [
+		{
+			type : "image"
+			alt [
+				lang
+				text
+				is_public (boolean)
+			]
+			url
+			is_public (boolean)
+		}
+		{
+			type : "title_1"
+			title [
+				lang
+				text
+				is_public (boolean)
+			]
+		}
+		{
+			type : "text"
+			text [
+				lang
+				text
+				is_public (boolean)
+			]
+		}
+		{
+			type : "link"
+			link [
+				lang
+				text
+				url
+				picto_url
+				picto_alt
+				is_public (boolean)
+			]
+		}
+	]
 ```
 
 ## Stockage des informations de chaque page
