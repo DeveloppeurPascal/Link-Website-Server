@@ -88,6 +88,10 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 			]
 		]
 	}
+	storage [
+		key
+		value
+	]
 ```
 
 ### list.json : la liste des pages du site
@@ -175,6 +179,10 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 			]
 			is_public (boolean)
 		}
+	]
+	storage [
+		key
+		value
 	]
 ```
 

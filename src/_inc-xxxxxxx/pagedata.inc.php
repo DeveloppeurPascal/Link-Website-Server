@@ -44,3 +44,14 @@
 			return false;
 		}
 	}
+
+	function GetValueForKey($Where, $Key) {
+		if (is_object($Where) && isset($Where->storage) && is_array($Where->storage) && (count($Where->storage)>0)) {
+			foreach($Where->storage as $LItem) {
+				if (is_object($LItem) && isset($LItem->key) && ($LItem->key == $Key)) {
+					return $LItem->value;
+				}
+			}
+		}
+		return false;
+	}
