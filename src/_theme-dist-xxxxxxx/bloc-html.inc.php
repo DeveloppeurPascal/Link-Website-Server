@@ -10,7 +10,7 @@
 // }
 
 	if (isset($CurrentBlock) && is_object($CurrentBlock) && isset($CurrentBlock->type) && ("html" == $CurrentBlock->type)) {
-		if (false !== ($content = (isset($CurrentBlock->content) && is_object($CurrentBlock->content))?GetObjectByLanguage($CurrentBlock->content,$LanguageISOCode))) {
+		if (isset($CurrentBlock->content) && is_array($CurrentBlock->content) && (false !== ($content = GetObjectByLanguage($CurrentBlock->content,$LanguageISOCode)))) {
 			print($content->text);
 		}
 	}

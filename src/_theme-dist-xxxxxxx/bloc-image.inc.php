@@ -12,7 +12,7 @@
 // }
 
 	if (isset($CurrentBlock) && is_object($CurrentBlock) && isset($CurrentBlock->type) && ("image" == $CurrentBlock->type)) {
-		if (false !== ($content = (isset($CurrentBlock->content) && is_object($CurrentBlock->content))?GetObjectByLanguage($CurrentBlock->content,$LanguageISOCode))) {
+		if (isset($CurrentBlock->content) && is_array($CurrentBlock->content) && (false !== ($content = GetObjectByLanguage($CurrentBlock->content,$LanguageISOCode)))) {
 			print("<p".(($LanguageISOCode!=$content->lang)?" lang=\"".$content->lang."\"":"").">");
 			$WithLink = isset($content->url) && (!empty($content->url));
 			if ($WithLink)

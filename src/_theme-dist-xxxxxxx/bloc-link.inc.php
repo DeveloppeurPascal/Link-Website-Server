@@ -13,7 +13,7 @@
 // }
 
 	if (isset($CurrentBlock) && is_object($CurrentBlock) && isset($CurrentBlock->type) && ("link" == $CurrentBlock->type)) {
-		if (false !== ($content = (isset($CurrentBlock->content) && is_object($CurrentBlock->content))?GetObjectByLanguage($CurrentBlock->content,$LanguageISOCode))) {
+		if (isset($CurrentBlock->content) && is_array($CurrentBlock->content) && (false !== ($content = GetObjectByLanguage($CurrentBlock->content,$LanguageISOCode)))) {
 			print("<div class=\"ListItem\"".(($LanguageISOCode!=$content->lang)?" lang=\"".$content->lang."\"":"").">");
 			$HasURL = isset($content->url) && (!empty($content->url));
 			if ($HasURL)
