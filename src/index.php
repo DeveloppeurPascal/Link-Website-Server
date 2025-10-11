@@ -9,10 +9,10 @@
 
 	function GetAbsoluteURL($RelativePath) {
 		if ((strlen(_SiteURL)-1) !== strrpos(_SiteURL, "/")) {
-			return _SiteURL."/".$RelativePath);
+			return _SiteURL."/".$RelativePath;
 		}
 		else {
-			return _SiteURL.$RelativePath);
+			return _SiteURL.$RelativePath;
 		}
 	}
 	
@@ -53,7 +53,7 @@
 
 	function GetLanguageCode() {
 		global $Settings;
-		
+
 		if (isset($_GET) && isset($_GET["lng"])) {
 			$lng = strtolower(substr(trim($_GET["lng"]),0,2));
 			for ($i = 0; $i < count($Settings->langs); $i++) {
@@ -97,7 +97,7 @@
 
 	// Check the URI et show a page if available
 	if (! empty($uri)) { // The URI is not empty, something has been asked
-		if (false === ($tab = explode("/", $uri))) {
+		if (1 === count($tab = explode("/", $uri))) {
 			// No "/" in the URI, try to access to a language folder or to a page without specifying the language
 
 			$lang = $uri;
@@ -118,7 +118,7 @@
 			}
 			else {
 				// The URI is not a language code, try to show it as a page under current browser language "folder"
-				RedirectToPage(GetLanguageCode(), $page);
+				RedirectToPage(GetLanguageCode(), $tab[0]);
 			}
 		}
 		else if (2 !== count($tab)) {
