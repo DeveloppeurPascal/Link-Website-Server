@@ -17,15 +17,15 @@
 			if (isset($PageData->title) && is_array($PageData->title) && (false !== ($LTitle = GetObjectByLanguage($PageData->title,$LanguageISOCode)))) {
 				print("<title lang=\"".$LTitle->lang."\">".$LTitle->text."</title>");
 			}
-		?><link rel="canonical" href="<?php print(GetAbsoluteURL($LanguageISOCode."/".$page_filename)); ?>" />
+		?><link rel="canonical" href="<?php print(GetAbsoluteURL($LanguageISOCode."/".$PageData->page_name)); ?>" />
 		<?php
 			for ($i = 0; $i < count($Settings->langs); $i++) {
 				if ($LanguageISOCode !== $Settings->langs[$i]->lang) {
-					print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->langs[$i]->lang."/".$page_filename)."\" hreflang=\"".$Settings->langs[$i]->lang."\" />\n");
+					print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->langs[$i]->lang."/".$PageData->page_name)."\" hreflang=\"".$Settings->langs[$i]->lang."\" />\n");
 				}
 			}
 			if (isset($Settings->default_lang) && (! empty($Settings->default_lang))) {
-				print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->default_lang."/".$page_filename)."\" hreflang=\"x-default\" />\n");
+				print("<link rel=\"alternate\" href=\"".GetAbsoluteURL($Settings->default_lang."/".$PageData->page_name)."\" hreflang=\"x-default\" />\n");
 			}
 			if (isset($Settings->apple_application_id) && (! empty($Settings->apple_application_id))) {
 				print("<meta name=\"apple-itunes-app\" content=\"app-id=".$Settings->apple_application_id."\" />\n");
@@ -171,10 +171,10 @@
 					for ($i = 0; $i < count($Settings->langs); $i++) {
 						if ($LanguageISOCode !== $Settings->langs[$i]->lang) {
 							if (isset(Settings->langs[$i]->url) && (!empty(Settings->langs[$i]->url))) {
-								print("<a href=\"../".$Settings->langs[$i]->lang."/".$page_filename."\"><img src=\"".GetAbsoluteURL($Settings->langs[$i]->url)."\" class=\"flag\" alt=\"".strtoupper($Settings->langs[$i]->lang)."\"></a> ");
+								print("<a href=\"../".$Settings->langs[$i]->lang."/".$PageData->page_name."\"><img src=\"".GetAbsoluteURL($Settings->langs[$i]->url)."\" class=\"flag\" alt=\"".strtoupper($Settings->langs[$i]->lang)."\"></a> ");
 							}
 							else {
-								print("<a href=\"../".$Settings->langs[$i]->lang."/".$page_filename."\">".strtoupper($Settings->langs[$i]->lang)."</a> ");
+								print("<a href=\"../".$Settings->langs[$i]->lang."/".$PageData->page_name."\">".strtoupper($Settings->langs[$i]->lang)."</a> ");
 							}
 						}
 					}
