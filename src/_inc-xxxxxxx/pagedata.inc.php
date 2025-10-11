@@ -13,12 +13,34 @@
 
 	function GetPageData($PageName) {
 		$FilePath = GetPageDataFilePath($PageName);
-		// TODO : add an error to log
+		
+		if (file_exists($FilePath)) {
+			$json = json_decode(file_get_contents($FilePath));
+			if ($json === null) {
+				// TODO : add an error to log if an error occurs during JSON decode
+//				die(json_last_error_msg());
+				return false;
+			}
+			return $json;
+		}
+		// TODO : add an error to log if the file doesn't exist
+		return false;
 	}
 
 	function GetSettingsData() {
 		$FilePath = _PathToDatabaseFolder."/settings.json";
-		// TODO : add an error to log
+		
+		if (file_exists($FilePath)) {
+			$json = json_decode(file_get_contents($FilePath));
+			if ($json === null) {
+				// TODO : add an error to log if an error occurs during JSON decode
+//				die(json_last_error_msg());
+				return false;
+			}
+			return $json;
+		}
+		// TODO : add an error to log if the file doesn't exist
+		return false;
 	}
 
 	function GetObjectByLanguage($ObjectsList, $LanguageISOCode, $ForceIsPublic = true) {
