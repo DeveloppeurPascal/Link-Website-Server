@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 		<?php
 			if (isset($PageData->title) && is_array($PageData->title) && (false !== ($LTitle = GetObjectByLanguage($PageData->title,$LanguageISOCode)))) {
-				print("<title lang=\"".$LTitle->lang."\">".$LTitle->text."</title>");
+				print("<title".(($LanguageISOCode!=$LTitle->lang)?" lang=\"".$LTitle->lang."\"":"").">".$LTitle->text."</title>");
 			}
 		?><link rel="canonical" href="<?php print(GetAbsoluteURL($LanguageISOCode."/".$PageData->page_name)); ?>" />
 		<?php
@@ -37,7 +37,7 @@
 				print("<meta name=\"robots\" content=\"".$Settings->default_meta_robots."\">\n");
 			}
 			if (isset($Settings->favicon_url) && (! empty($Settings->favicon_url))) {
-				print("<link rel=\"icon\" type=\"image/x-icon\" href=\"".GetAbsoluteURL(favicon_url)."\">\n");
+				print("<link rel=\"icon\" type=\"image/x-icon\" href=\"".GetAbsoluteURL($Settings->favicon_url)."\">\n");
 			}
 			if (isset($Settings->metas) && is_array($Settings->metas) && (count($Settings->metas)>0)) {
 				foreach($Settings->metas as $LMeta) {
@@ -138,7 +138,7 @@
 			<header><?php
 				if (isset($Settings->default_image) && is_object($Settings->default_image) && isset($Settings->default_image->is_public) && $Settings->default_image->is_public) {
 					if (false !== ($LImage = GetObjectByLanguage($Settings->default_image->content, $LanguageISOCode))) {
-						print("<p class=\"LogoTitre\"><img src=\"".$LImage->url_image."\" alt=\"".$LImage->text."\"></p>");
+						print("<p class=\"LogoTitre\"><img src=\"".GetAbsoluteURL($LImage->url_image)."\" alt=\"".$LImage->text."\"></p>");
 					}
 				}
 				?><nav><?php
@@ -167,7 +167,7 @@
 
 					for ($i = 0; $i < count($Settings->langs); $i++) {
 						if ($LanguageISOCode !== $Settings->langs[$i]->lang) {
-							if (isset(Settings->langs[$i]->url) && (!empty(Settings->langs[$i]->url))) {
+							if (isset($Settings->langs[$i]->url) && (!empty($Settings->langs[$i]->url))) {
 								print("<a href=\"../".$Settings->langs[$i]->lang."/".$PageData->page_name."\"><img src=\"".GetAbsoluteURL($Settings->langs[$i]->url)."\" class=\"flag\" alt=\"".strtoupper($Settings->langs[$i]->lang)."\"></a> ");
 							}
 							else {
@@ -230,7 +230,7 @@
 						print("<br>\n");
 					}
 					if (isset($Settings->copyright) && is_object($Settings->copyright)) {
-						if (false !== ($LText = GetObjectByLanguage($Settings->copyright->text))) {
+						if (false !== ($LText = GetObjectByLanguage($Settings->copyright->text,$LanguageISOCode))) {
 							if ($LanguageISOCode != $LText->lang) {
 								print("<span lang=\"".$LItem->lang."\">".$LText->text."</span><br>\n");
 							}
@@ -244,7 +244,7 @@
 							foreach($Settings->copyright->editors as $LEditor) {
 								if (false !== ($LItem = GetObjectByLanguage($LEditor, $LanguageISOCode))) {
 									$LWithURL = isset($LItem->url) && (!empty($LItem->url));
-									print(((!$LFirst)?"/ "."").($LWithURL?"<a href=\"".$LItem->url."\">":"").(($LanguageISOCode!=$LItem->lang)?"<span lang=\"".$LItem->lang."\">".$LItem->text."</span>":$LItem->text).($LWithURL?"</a>":"")." ");
+									print(((!$LFirst)?"/ ":"").($LWithURL?"<a href=\"".$LItem->url."\">":"").(($LanguageISOCode!=$LItem->lang)?"<span lang=\"".$LItem->lang."\">".$LItem->text."</span>":$LItem->text).($LWithURL?"</a>":"")." ");
 									$LFirst = false;
 								}
 							}
