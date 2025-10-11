@@ -30,7 +30,10 @@
 			if (isset($Settings->apple_application_id) && (! empty($Settings->apple_application_id))) {
 				print("<meta name=\"apple-itunes-app\" content=\"app-id=".$Settings->apple_application_id."\" />\n");
 			}
-			if (isset($Settings->meta_robots) && (! empty($Settings->meta_robots))) {
+			if (isset($PageData->meta_robots) && (! empty($PageData->meta_robots))) {
+				print("<META NAME=\"ROBOTS\" CONTENT=\"".$PageData->meta_robots."\">\n");
+			}
+			else if (isset($Settings->meta_robots) && (! empty($Settings->meta_robots))) {
 				print("<META NAME=\"ROBOTS\" CONTENT=\"".$Settings->meta_robots."\">\n");
 			}
 			if (isset($Settings->favicon_url) && (! empty($Settings->favicon_url))) {

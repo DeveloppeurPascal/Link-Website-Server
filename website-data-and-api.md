@@ -48,7 +48,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 		]
 	]
 	links [
-		[ // any LINK tag can have a different name or content depending on page language
+		[
 			lang
 			rel
 			href
@@ -101,6 +101,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 	page_name
 	theme_file (si absent ou vide => default_theme_file)
 	head {
+		meta_robots : "" by default to use the same as global setting
 		metas [
 			[ // any META tag can have a different name or content depending on page language
 				lang
