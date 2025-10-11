@@ -47,6 +47,14 @@ These source codes are provided as is, without warranty of any kind.
 
 Certain elements included in this repository may be subject to third-party usage rights (images, sounds, etc.). They are not reusable in your projects unless otherwise stated.
 
+# License applied to flag images
+
+The SVG images of flags in the ./src/img/flags folder come from the repository https://github.com/lipis/flag-icons
+
+They are distributed under the MIT license.
+
+If you wish to use them in your projects, please ensure that you comply with their license.
+
 ## How to ask a new feature, report a bug or a security issue ?
 
 If you want an answer from the project owner the best way to ask for a new feature or report a bug is to go to [the GitHub repository](https://github.com/DeveloppeurPascal/Link-Website-Server) and [open a new issue](https://github.com/DeveloppeurPascal/Link-Website-Server/issues).

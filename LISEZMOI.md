@@ -51,6 +51,14 @@ Ces codes sources sont fournis en l'état sans garantie d'aucune sorte.
 
 Certains éléments inclus dans ce dépôt peuvent dépendre de droits d'utilisation de tiers (images, sons, ...). Ils ne sont pas réutilisables dans vos projets sauf mention contraire.
 
+# Licence appliquée aux images des drapeaux
+
+Les images en SVG des drapeaux présentes dans le dossier ./src/img/flags proviennent du dépôt https://github.com/lipis/flag-icons
+
+Elles sont distribuées sous licence MIT.
+
+Si vous désirez les utiliser dans vos projets, assurez vous de respecter leur licence.
+
 ## Comment demander une nouvelle fonctionnalité, signaler un bogue ou une faille de sécurité ?
 
 Si vous voulez une réponse du propriétaire de ce dépôt la meilleure façon de procéder pour demander une nouvelle fonctionnalité ou signaler une anomalie est d'aller sur [le dépôt de code sur GitHub](https://github.com/DeveloppeurPascal/Link-Website-Server) et [d'ouvrir un ticket](https://github.com/DeveloppeurPascal/Link-Website-Server/issues).
