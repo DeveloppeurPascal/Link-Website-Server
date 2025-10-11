@@ -126,6 +126,25 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 	]
 	contents [
 		{
+			type : "title"
+			level (1 to 6)
+			content [
+				lang
+				text
+				is_public (boolean)
+			]
+			is_public (boolean)
+		}
+		{
+			type : "text"
+			content [
+				lang
+				text
+				is_public (boolean)
+			]
+			is_public (boolean)
+		}
+		{
 			type : "image"
 			alt [
 				lang
@@ -136,20 +155,13 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 			is_public (boolean)
 		}
 		{
-			type : "title_1"
-			title [
+			type : "html"
+			content [
 				lang
 				text
 				is_public (boolean)
 			]
-		}
-		{
-			type : "text"
-			text [
-				lang
-				text
-				is_public (boolean)
-			]
+			is_public (boolean)
 		}
 		{
 			type : "link"
@@ -161,6 +173,7 @@ Les données du site sont stockées par défaut sous forme de fichiers JSON dans
 				picto_alt
 				is_public (boolean)
 			]
+			is_public (boolean)
 		}
 	]
 ```
