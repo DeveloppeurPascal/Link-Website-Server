@@ -7,6 +7,16 @@
 	// Infos and updates :
 	// https://github.com/DeveloppeurPascal/Link-Website-Server
 
+	function GetPathForThemeFile($ThemeFile, $UseDefaultThemeIfNotExist = true) {
+		if (empty($ThemeFile))
+			return false;
+		if (file_exists($path = _PathToThemeFolder."/".$ThemeFile.".inc.php"))
+			return $path;
+		if ($UseDefaultThemeIfNotExist && file_exists($path = _PathToDefaultThemeFolder."/".$ThemeFile.".inc.php"))
+			return $path;
+		return false;
+	}
+
 	function GenerateAndSendPage($LanguageISOCode, $PageName) {
 		global $Settings;
 		
@@ -22,13 +32,13 @@
 			else {
 				if ($PageData->is_public) {
 					$ThemeFile = (isset($PageData->theme_file) && (!empty($PageData->theme_file)))?$PageData->theme_file:$Settings->default_theme_file;
-					if (empty($ThemeFile) || (!file_exists(_PathToThemeFolder."/".$ThemeFile.".inc.php"))) {
-						// TODO : add an error to log
-						RedirectToForbiddenPage($LanguageISOCode);
+					if (false !== ($ThemeFilePath = GetPathForThemeFile($ThemeFile))) {
+						// Open the theme file which can use $LanguageISOCode, $Settings and $PageData objects
+						@include_once($ThemeFilePath);
 					}
 					else {
-						// Open the theme file which can use $LanguageISOCode, $Settings and $PageData objects
-						@include_once(_PathToThemeFolder."/".$ThemeFile.".inc.php");
+						// TODO : add an error to log
+						RedirectToForbiddenPage($LanguageISOCode);
 					}
 				}
 				else {
