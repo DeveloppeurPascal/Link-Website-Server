@@ -12,6 +12,19 @@ Ce moteur de site n'a pas d'interface d'aministration mais propose une API pour 
 
 Vous pouvez vous servir de ce moteur pour créer vos propres sites et bénéficier des fonctionnalités incluses à condition de respecter les informations minimales à avoir dans les trois types de fichiers de la base de données. Le reste est entièrement autonome.
 
+> [!WARNING]
+Suite à la décision de Microsoft de fondre GitHub dans sa division IA à l'été 2025 et donc de ne considérer ce que nous publions dessus que comme une source d'entrainement de ses modèles sans contre partie (à part l'hébergement des codes sources) ou nous abreuver de leurs injonctions à utiliser Copilot partout, pour tout et n'importe quoi, j'ai pris la décision d'arrêter la maintenance des dépôts ici.
+>
+> La maintenance de ce projet est déplacée vers Codeberg sur https://codeberg.org/PatrickPremartin/Block-Page-Site-Server
+>
+> Codeberg est un hébergement associatif situé en Europe, respectueux des développeurs, de la licence de chaque projet et de la vie privée des personnes qui s'y connectent.
+
+> [!NOTE]
+> Pour ouvrir ou intervenir sur un ticket de ce projet, rendez-vous sur https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/issues
+> Pour faire un PULL REQUEST sur ce projet, rendez-vous sur https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/pulls
+> Pour toute autre information ou me contacter vous pouvez aussi consulter le site Internet du projet sur https://blockpagesiteserver.trucs-de-developpeur-web.fr ou son devlog sur https://trucs-de-developpeur-web.fr/block-page-site-server.html
+> Ce dépôt de code sera archivé une fois la migration terminée et ne bénéficiera plus de mise à jour sur GitHub.
+
 ## Présentations et conférences
 
 ### Twitch
@@ -30,7 +43,7 @@ Vous pouvez aussi [consulter le site du script](https://blockpagesiteserver.truc
 
 ## Installation des codes sources
 
-Pour télécharger ce dépôt de code il est recommandé de passer par "git" mais vous pouvez aussi télécharger un ZIP directement depuis [son dépôt GitHub](https://github.com/DeveloppeurPascal/Link-Website-Server).
+Pour télécharger ce dépôt de code il est recommandé de passer par "git" mais vous pouvez aussi télécharger un ZIP directement depuis [son dépôt GitHub](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server).
 
 ## Compatibilité
 
@@ -38,7 +51,7 @@ Quand je développe, je travaille localement avec XAMPP sur Windows. Mes projets
 
 Aucune garantie de compatibilité avec d'autres logiciels ou versions n'est fournie même si je m'efforce de faire du code propre et ne pas trop utiliser de trucs spécifiques.
 
-Si vous détectez des anomalies sur des versions antérieures n'hésitez pas à [les rapporter](https://github.com/DeveloppeurPascal/Link-Website-Server/issues) pour que je teste et tente de corriger ou fournir un contournement.
+Si vous détectez des anomalies sur des versions antérieures n'hésitez pas à [les rapporter](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/issues) pour que je teste et tente de corriger ou fournir un contournement.
 
 ## Licence d'utilisation de ce dépôt de code et de son contenu
 
@@ -65,7 +78,7 @@ Si vous désirez les utiliser dans vos projets, assurez vous de respecter leur l
 
 ## Comment demander une nouvelle fonctionnalité, signaler un bogue ou une faille de sécurité ?
 
-Si vous voulez une réponse du propriétaire de ce dépôt la meilleure façon de procéder pour demander une nouvelle fonctionnalité ou signaler une anomalie est d'aller sur [le dépôt de code sur GitHub](https://github.com/DeveloppeurPascal/Link-Website-Server) et [d'ouvrir un ticket](https://github.com/DeveloppeurPascal/Link-Website-Server/issues).
+Si vous voulez une réponse du propriétaire de ce dépôt la meilleure façon de procéder pour demander une nouvelle fonctionnalité ou signaler une anomalie est d'aller sur [le dépôt de code sur GitHub](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server) et [d'ouvrir un ticket](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/issues).
 
 Si vous avez trouvé une faille de sécurité n'en parlez pas en public avant qu'un correctif n'ait été déployé ou soit disponible. [Contactez l'auteur du dépôt en privé](https://trucs-de-developpeur-web.fr/nous-contacter.php) pour expliquer votre trouvaille.
 

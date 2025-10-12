@@ -12,6 +12,19 @@ This site engine does not have an administration interface but offers an API for
 
 You can use this engine to create your own sites and benefit from the included features, provided you comply with the minimum information requirements for the three types of database files. The rest is entirely autonomous.
 
+> [!WARNING]
+> Following Microsoft's decision to merge GitHub into its AI division in the summer of 2025 and therefore to consider what we publish on it only as a source of training for its models without any compensation (apart from hosting the source codes) or to bombard us with their injunctions to use Copilot everywhere, for everything and anything, I have decided to stop maintaining the repositories here.
+>
+> Maintenance of this project has been moved to Codeberg at https://codeberg.org/PatrickPremartin/Block-Page-Site-Server
+>
+> Codeberg is a community-based hosting service located in Europe that respects developers, the license of each project, and the privacy of those who connect to it.
+
+> [!NOTE]
+> To open or work on a ticket for this project, go to https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/issues
+> To make a PULL REQUEST on this project, go to https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/pulls
+> For any other information or to contact me, you can also visit the project website at https://blockpagesiteserver.trucs-de-developpeur-web.fr or its devlog at https://trucs-de-developpeur-web.fr/block-page-site-server.html
+> This code repository will be archived once the migration is complete and will no longer be updated on GitHub.
+
 ## Talks and conferences
 
 ### Twitch
@@ -30,7 +43,7 @@ You can also [visit the script website](https://blockpagesiteserver.trucs-de-dev
 
 ## Source code installation
 
-To download this code repository, we recommend using "git", but you can also download a ZIP file directly from [its GitHub repository](https://github.com/DeveloppeurPascal/Link-Website-Server).
+To download this code repository, we recommend using "git", but you can also download a ZIP file directly from [its GitHub repository](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server).
 
 ## Compatibility
 
@@ -38,7 +51,7 @@ When I code, I work locally with XAMPP on Windows. My projects work for this sta
 
 There's no guarantee of compatibility with other software or versions, even though I try to keep my code clean and avoid using too many specific things.
 
-If you detect any anomalies on earlier versions, please don't hesitate to [report them](https://github.com/DeveloppeurPascal/Link-Website-Server/issues) so that I can test and try to correct or provide a workaround.
+If you detect any anomalies on earlier versions, please don't hesitate to [report them](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/issues) so that I can test and try to correct or provide a workaround.
 
 ## License to use this code repository and its contents
 
@@ -65,7 +78,7 @@ If you wish to use them in your projects, please ensure that you comply with the
 
 ## How to ask a new feature, report a bug or a security issue ?
 
-If you want an answer from the project owner the best way to ask for a new feature or report a bug is to go to [the GitHub repository](https://github.com/DeveloppeurPascal/Link-Website-Server) and [open a new issue](https://github.com/DeveloppeurPascal/Link-Website-Server/issues).
+If you want an answer from the project owner the best way to ask for a new feature or report a bug is to go to [the GitHub repository](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server) and [open a new issue](https://codeberg.org/PatrickPremartin/Block-Page-Site-Server/issues).
 
 If you found a security issue please don't report it publicly before a patch is available. Explain the case by [sending a private message to the author](https://trucs-de-developpeur-web.fr/nous-contacter.php).
 
