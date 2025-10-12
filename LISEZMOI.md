@@ -1,8 +1,16 @@
-# Link Website Server
+# Block Page Site Server
 
 [This page in English.](README.md)
 
-Ce dépôt de code contient la partie serveur (en PHP) de ce [générateur de sites de liens](https://github.com/DeveloppeurPascal/Link-Website-Generator).
+Ce projet est un moteur de sites multilingue développé en PHP. Il prend en charge le routage des pages, d'éventuelles redirections, le SEO, les partages sur les réseaux sociaux, un système de cache et de modèles de pages à plusieurs niveaux.
+
+Les pages sont définies comme des ensembles de blocs que vous pouvez utiliser à partir du modèle par défaut. Il bien entendu possible de créer votre propre modèle de pages et vos propres blocs.
+
+Les données sont stockées sous forme de fichiers JSON. Le stockage en base de données (plutôt pour les gros sites) est envisagé.
+
+Ce moteur de site n'a pas d'interface d'aministration mais propose une API pour mettre à jour sa base de données. Des logiciels et des backoffices clients de cette APIs seront proposés. Ils seront listés sur le site du projet.
+
+Vous pouvez vous servir de ce moteur pour créer vos propres sites et bénéficier des fonctionnalités incluses à condition de respecter les informations minimales à avoir dans les trois types de fichiers de la base de données. Le reste est entièrement autonome.
 
 ## Présentations et conférences
 
@@ -18,17 +26,13 @@ Afficher la page d'accueil et copiez les informations indiquées dans votre vers
 
 Une fois fait le programme passera en affichage des données, vous n'aurez plus qu'à le remplir depuis le logiciel.
 
-Vous pouvez aussi [consulter le site du script](https://linkwebsitegenerator.olfsoftware.fr/) pour en savoir plus sur son fonctionnement, accéder à des vidéos et articles, connaître les différentes versions disponibles et leurs fonctionnalités, contacter le support utilisateurs...
+Vous pouvez aussi [consulter le site du script](https://blockpagesiteserver.trucs-de-developpeur-web.fr) pour en savoir plus sur son fonctionnement, accéder à des vidéos et articles, connaître les différentes versions disponibles et leurs fonctionnalités, contacter le support utilisateurs...
 
 ## Installation des codes sources
 
 Pour télécharger ce dépôt de code il est recommandé de passer par "git" mais vous pouvez aussi télécharger un ZIP directement depuis [son dépôt GitHub](https://github.com/DeveloppeurPascal/Link-Website-Server).
 
 ## Compatibilité
-
-When I code, I work locally with XAMPP on Windows. My projects work for this stack.
-
-There's no guarantee of compatibility with other versions, even though I try to keep my code clean and avoid using too many specific things.
 
 Quand je développe, je travaille localement avec XAMPP sur Windows. Mes projets fonctionnent avec cette stack.
 

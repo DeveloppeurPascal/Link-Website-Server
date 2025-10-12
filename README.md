@@ -1,8 +1,16 @@
-# Link Website Server
+# Block Page Site Server
 
 [Cette page en français.](LISEZMOI.md)
 
-This code repository contains the server part (in PHP) of this [links website generator](https://github.com/DeveloppeurPascal/Link-Website-Generator).
+This project is a multilingual website engine developed in PHP. It supports page routing, redirects, SEO, social media sharing, a cache system, and multi-level page templates.
+
+Pages are defined as sets of blocks that you can use from the default template. You can, of course, create your own page templates and blocks.
+
+Data is stored in JSON files. Database storage (more suitable for large sites) is also an option.
+
+This site engine does not have an administration interface but offers an API for updating its database. Software and client back offices for this API will be available. They will be listed on the project website.
+
+You can use this engine to create your own sites and benefit from the included features, provided you comply with the minimum information requirements for the three types of database files. The rest is entirely autonomous.
 
 ## Talks and conferences
 
@@ -18,7 +26,7 @@ Display the home page and copy the information indicated in your version of the 
 
 Once this is done, the program will switch to data display mode, and you will only need to fill it in using the software.
 
-You can also [visit the script website](https://linkwebsitegenerator.olfsoftware.fr/) to find out more about how it works, access videos and articles, find out about the different versions available and their features, contact user support...
+You can also [visit the script website](https://blockpagesiteserver.trucs-de-developpeur-web.fr) to find out more about how it works, access videos and articles, find out about the different versions available and their features, contact user support...
 
 ## Source code installation
 
