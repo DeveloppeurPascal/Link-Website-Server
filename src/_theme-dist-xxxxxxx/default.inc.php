@@ -1,11 +1,11 @@
 <?php
-	// Link Website Generator
+	// Block Page Site Server
 	// (c) 2025 Patrick Prémartin
 	//
 	// Distributed under license AGPL.
 	//
 	// Infos and updates :
-	// https://github.com/DeveloppeurPascal/Link-Website-Server
+	// https://blockpagesiteserver.trucs-de-developpeur-web.fr
 
 ?><!DOCTYPE html>
 <html lang="<?php print($LanguageISOCode); ?>">

@@ -1,4 +1,12 @@
 <?php
+	// Block Page Site Server
+	// (c) 2025 Patrick Prémartin
+	//
+	// Distributed under license AGPL.
+	//
+	// Infos and updates :
+	// https://blockpagesiteserver.trucs-de-developpeur-web.fr
+
 // {
 // 	type : "text"
 // 	content [

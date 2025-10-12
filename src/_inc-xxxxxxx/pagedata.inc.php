@@ -1,11 +1,11 @@
 <?php
-	// Link Website Generator
+	// Block Page Site Server
 	// (c) 2025 Patrick Prémartin
 	//
 	// Distributed under license AGPL.
 	//
 	// Infos and updates :
-	// https://github.com/DeveloppeurPascal/Link-Website-Server
+	// https://blockpagesiteserver.trucs-de-developpeur-web.fr
 
 	function GetPageDataFilePath($PageName) {
 		return _PathToDatabaseFolder."/page_".sha1($PageName).".json";
